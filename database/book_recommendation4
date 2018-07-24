@@ -1,0 +1,624 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 24, 2018 at 01:33 AM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `book_recommendation4`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `author`
+--
+
+CREATE TABLE `author` (
+  `author_id` int(10) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `total_books` int(3) NOT NULL,
+  `bio` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `author`
+--
+
+INSERT INTO `author` (`author_id`, `first_name`, `last_name`, `total_books`, `bio`) VALUES
+(1, 'R.S.', 'Khurmi', 21, 'Male'),
+(2, 'J.K.', 'Gupta', 27, 'Male'),
+(3, 'S', 'Chand', 6, 'Male'),
+(4, 'Rick', 'Kazman', 12, 'Male'),
+(5, 'Len', 'Bass', 21, 'Male'),
+(6, 'Tom', 'Jackson', 9, 'Male'),
+(7, 'Kurt', 'Gieck', 14, 'male'),
+(8, 'Matthew', 'Frederick', 14, 'Male'),
+(9, 'Charles ', 'O Probst ', 12, 'Male'),
+(10, ' G. Howard', 'William ', 7, 'male'),
+(11, 'J. Mao', 'Jeremy ', 5, 'female'),
+(12, 'Laari ', 'brooks', 5, 'male'),
+(13, 'hery ', 'Patroski', 11, 'male'),
+(14, 'RS', 'Khurmi', 13, 'male'),
+(15, 'RK ', 'Rajput', 17, 'male'),
+(16, 'steave ', 'Mc Connel', 2, 'male'),
+(17, 'benard', 'Skelner', 13, 'male'),
+(18, 'BL ', 'Theraja', 7, 'male'),
+(19, 'RK ', 'Bansal', 19, 'mae'),
+(20, 'J.L', 'meriam', 1, 'female'),
+(21, 'Robin', 'Cook', 14, 'male'),
+(22, 'Atual', 'Guwande', 1, 'male'),
+(23, 'Abraham ', ' Verghese', 3, 'male'),
+(24, 'Siddhartha', ' Mukherjee', 7, 'male'),
+(25, 'Oliver ', 'Sacks', 3, 'male'),
+(26, 'Jerome', ' Groopman', 4, 'male'),
+(27, 'Richard ', 'Preston', 3, 'male'),
+(28, 'Rebecca', ' Skloot', 21, 'female'),
+(29, 'Anne', ' Fadiman', 4, 'female'),
+(30, 'Patricia ', 'Cornwell', 2, 'female'),
+(31, 'john', 'adwerd', 12, 'has technical knowledge '),
+(32, 'Jone', 'Mcaculum', 15, 'Get certified '),
+(33, 'Mickey', 'Mouse', 2, 'has technical knowledge '),
+(34, 'abc', 'abc', 12, 'has technical knowledge '),
+(35, 'aaa', 'bbb', 12, 'aaa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book`
+--
+
+CREATE TABLE `book` (
+  `ISBN` int(15) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `description` text,
+  `category` varchar(45) NOT NULL,
+  `edition` varchar(7) NOT NULL,
+  `publisher_id` int(10) DEFAULT NULL,
+  `publishdate` date NOT NULL,
+  `price` decimal(5,2) DEFAULT NULL,
+  `image` varchar(100) NOT NULL,
+  `Rating` enum('1','2','3','4','5') NOT NULL,
+  `keyword_id` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`ISBN`, `title`, `description`, `category`, `edition`, `publisher_id`, `publishdate`, `price`, `image`, `Rating`, `keyword_id`) VALUES
+(11111, 'web developing', 'The indispensable introductory reference guide to HTML, XHTML and CSS Even though new technologies enable people to do much more with the Web, in the end HTML, XHTML and CSS are still at the root of any Web site. The newest edition of this bestselling guide is fully updated and revised for the latest technology changes to the field, including HTML5 and CSS3. Illustrated in full color, this book provides beginner and advanced coders the tools they need to be proficient at these programming languages.', 'engineering', '5th', 24, '2017-08-09', '12.00', 'Back Analysis in Rock Engineering.png', '2', 24),
+(7179428, ' Structural Engineering Formulas 2nd Edition', 'PRACTICAL, PORTABLE, AND PACKED WITH UP-TO-DATE STRUCTURAL ENGINEERING FORMULAS Thoroughly revised with more than 300 new formulas, this compact yet comprehensive compilation puts essential data related to the design and analysis of engineering structures at your fingertips. Structural Engineering Formulas, Second Edition covers a wide range of topics, including statics, soils, foundations, retaining structures, pipes, and tunnels, and explains the use and application of each ready-to-use formula. This time-saving reference for civil engineers is also invaluable to students and those studying for licensing exams. COVERAGE INCLUDES: Stress and strain-methods of analysis | Properties of geometric sections | Beams--diagrams and formulas for various loading conditions | Frames--diagrams and formulas for various static loading conditions | Arches--diagrams and formulas for various loading conditions | Trusses--method of joints and method of section analysis | Plates--bending moments for various support and loading conditions | Soils | Foundations | Retaining structures | Pipes and tunnels--bending moments for various static loading conditions', 'engineering', '2nd', 2, '2013-06-12', '62.95', 'images/Structural Engineering Formulas 2nd Edition.png', '5', 7),
+(12345678, 'my title', NULL, 'engineering', '5th', 20, '2000-04-12', '154.00', 'A Textbook of Machine Design.png', '5', 20),
+(12457745, 'HTML for dummies', 'This is the description', 'engineering', '1st', 4, '2015-06-01', '124.00', 'images/Beginning Programming with Java For Dummies.png', '4', 15),
+(12800956, 'Oracle Databases on Amazon Web Services', NULL, 'Database', 'first', 6, '2017-05-01', '64.00', 'images/Oracle Databases on Amazon Web Services.png', '5', 4),
+(19542850, 'Engineering Scalable, Elastic, and Cost-Efficient Cloud Computing Applications 2', NULL, 'Computer Science Engineering', 'first', 3, '2014-04-14', '74.50', 'images/Engineering Scalable, Elastic, and Cost-Efficient.png', '4', 8),
+(19933914, ' Microelectronic Circuits', NULL, 'engineering', '7th', 3, '2015-12-18', '130.95', 'images/Microelectronic Circuits.png', '5', 9),
+(30640083, 'Introduction to Circuits with Electronics', NULL, 'ELECTRICAL AND COMPUTER ENGINEERING', 'first', 9, '1996-01-01', '218.75', 'images/Introduction to Circuits with Electronics.png', '3', 9),
+(31950701, 'Expectations and Disappointments of Industrial Innovations 2017', NULL, 'Management and Industrial Engineering', 'first', 9, '2017-04-12', '126.50', 'images/Expectations and Disappointments of Industrial Inn.png', '4', 10),
+(71010033, ' Engineering Mechanics', NULL, 'engineering', 'first', 1, '2014-05-04', '93.52', 'images/Engineering Mechanics.png', '4', 7),
+(71016767, ' Engineering Drawing + Sketchbook 8E', NULL, 'engineering', '8th', 12, '2011-10-10', '95.25', 'images/Engineering Drawing + Sketchbook 8E.png', '1', 15),
+(71457356, 'Industrial Instrumentation& Process Control', NULL, 'Mechanical Engineering', 'first', 10, '2005-03-31', '104.25', 'images/Industrial Instrumentation& Process Control.png', '1', 15),
+(71493255, 'How to Repair Briggs and Stratton Engines', NULL, 'engineering', '4th', 8, '2007-06-19', '27.95', 'images/How to Repair Briggs and Stratton Engines.png', '1', 15),
+(71742476, 'Roark\'s Formulas for Stress and Strain', NULL, 'engineering', '8th', 11, '2011-11-28', '138.75', 'images/Roark\'s Formulas for Stress and Strain.png', '1', 15),
+(71793054, 'Lean Six Sigma for Supply Chain Management', NULL, 'Mechanical Engineering', '2nd', 2, '2014-04-08', '46.50', 'images/Lean Six Sigma for Supply Chain Management.png', '1', 15),
+(71830456, 'Schaum\'s Outline of Electric Circuits', NULL, 'engineering', '6th', 6, '2013-11-18', '25.40', 'images/Schaum\'s Outline of Electric Circuits.png', '1', 15),
+(71831452, 'Fluid Mechanics and Hydraulics', NULL, 'Mechanical Engineering', '4th', 1, '2013-11-18', '35.00', 'images/Fluid Mechanics and Hydraulics.png', '1', 15),
+(71832386, 'Gray Hat Hacking the Ethical Hacker\'s Handbook', NULL, 'Networking & Communication', '4th', 1, '2014-12-15', '60.05', 'images/Gray Hat Hacking the Ethical Hacker\'s Handbook.png', '1', 15),
+(71835733, 'How to Implement Lean Manufacturing', NULL, 'mechanical engineering', '2nd', 1, '2015-06-02', '54.50', 'images/How to Implement Lean Manufacturing.png', '1', 15),
+(71837280, 'Electronics from the Ground Up', NULL, 'Hacking, Designing, and Inventing ', 'first', 1, '2014-10-09', '42.90', 'images/Electronics from the Ground Up.png', '1', 15),
+(71839666, '\r\nMinecraft Mastery', NULL, 'Electronics', 'first', 10, '2017-02-02', '24.14', 'images/Minecraft Mastery.png', '1', 15),
+(71842594, '\r\nSQL', NULL, 'Database', '4th', 2, '2015-10-09', '45.75', '\nimages/SQL.png', '1', 11),
+(71850490, 'Handbook of Petroleum Refining Processes, Fourth Edition', NULL, 'Mechanical Engineering', '4th', 13, '2015-12-31', '219.40', 'images/Handbook of Petroleum Refining Processes, Fourth E....png', '1', 15),
+(72460539, '\r\nCMOS Digital Integrated Circuits Analysis and Design', NULL, 'Electrical and Computer Engineering', '3rd', 10, '2002-10-29', '234.75', 'images/CMOS Digital Integrated Circuits Analysis and Design.png', '1', 15),
+(72848235, ' Unit Operations Of Chemical Engineering', NULL, 'Civil Engineering', '7th', 8, '2004-10-17', '183.25', 'images/Unit Operations Of Chemical Engineering.png', '1', 15),
+(73104450, ' Introduction To Chemical Engineering ', NULL, 'Civil Engineering', '7th', 8, '2004-11-12', '189.25', 'images/Introduction To Chemical Engineering.png', '1', 15),
+(73380237, ' Mechatronics And Measurement Systems', NULL, 'Mechanical Engineering', '4th', 13, '2011-03-01', '234.75', 'images/Mechatronics And Measurement Systems.png', '1', 15),
+(73380377, 'Fundamentals Of Electrical Engineering', NULL, 'engineering', 'first', 11, '2008-02-08', '135.35', 'images/Fundamentals Of Electrical Engineering.png', '1', 15),
+(73397921, 'Numerical Methods For Engineers', NULL, 'Civil Engineering', '7th', 15, '2014-01-24', '154.20', 'images/Numerical Methods For Engineers.png', '1', 15),
+(73398276, 'Fluid Mechanics', NULL, 'Mechanical Engin', '8th', 12, '2015-01-16', '189.85', 'images/Fluid Mechanics.png', '1', 15),
+(73401129, 'Construction Planning, Equipment, and Methods', NULL, 'Civil engineering', '8th', 12, '2010-02-18', '253.95', 'images/Construction Planning, Equipment, and Methods.png', '1', 15),
+(80425810, 'Corporate Strategy, Public Policy and New Technologies', NULL, 'Electronics Engineering', 'first', 4, '1996-04-11', '225.25', 'images/Corporate Strategy, Public Policy and New Technolo....png', '1', 15),
+(110324300, 'Technology and Application of Environmental and Engineering Geophysics', NULL, 'engineering', 'first', 1, '2017-04-07', '196.75', 'images/Technology and Application of Environmental and En...png', '1', 15),
+(119563564, 'Context-Aware Systems and Applications 2', NULL, 'Telecommunications Engineering', '2nd', 6, '2014-04-11', '150.75', 'images/Context-Aware Systems and Applications 2.png', '1', 15),
+(123838460, 'ndard Handbook of Petroleum and Natural Gas Engineering', NULL, 'Petroleum and Natural Gas Engineering', '3rd', 13, '2015-10-01', '285.95', 'images/standard Handbook of Petroleum and Natural Gas Engine.png', '1', 15),
+(124585422, '  Ford Fuel Injection & Electronic Engine Control', NULL, 'enigineering', '3rd', 1, '1998-12-01', '66.40', 'images/Ford Fuel Injection & Electronic Engine Control.png', '1', 15),
+(124585423, ' Combustion Engine Diagnosis 2017', NULL, 'engineering', '4th', 2, '2017-06-22', '330.00', 'images/Combustion Engine Diagnosis 2017.png', '1', 15),
+(125964163, 'Programming Arduino', NULL, 'Electrical Engineering', '2nd', 6, '2016-06-29', '21.75', 'images/Programming Arduino.png', '1', 15),
+(128009446, 'Biofluid Mechanics', NULL, 'Biomedical Engineering', '2nd', 6, '2015-10-01', '94.75', 'images/Biofluid Mechanics.png', '1', 15),
+(128021209, 'Agile Systems Engineering   ', NULL, 'engineering', 'first', 7, '2015-10-01', '57.25', 'images/Agile Systems Engineering .png', '1', 15),
+(128093951, 'Signals and Systems for Bioengineers', NULL, 'Biomedical Engineering', '3rd', 11, '2017-04-15', '287.50', 'images/Signals and Systems for Bioengineers.png', '1', 15),
+(132073749, 'Integrating Unix and PC Network Operating Systems', NULL, 'Information technology', 'first', 8, '1996-03-08', '106.75', 'images/Integrating Unix and PC Network Operating Systems.png', '1', 15),
+(140515267, 'The New Penguin Dictionary of Civil Engineering', NULL, 'engineering', '1', 7, '2005-06-29', '28.75', 'images/The New Penguin Dictionary of Civil Engineering.png', '1', 15),
+(170365980, '\r\nInformation and Software Technology', NULL, 'Information Technology', '3rd', 11, '2015-08-27', '66.95', 'images/nformation and Software Technology.png', '1', 15),
+(191576470, 'Computational Problems in Science and Engineering', NULL, 'Electrical Engineering', '3rd', 1, '2015-11-03', NULL, 'images/Computational Problems in Science and Engineering.pngimages/', '1', 15),
+(195107233, 'Digital Logic and State Machine Design', NULL, 'Electrical and Computer Engineering', '3rd', 1, '1994-11-01', '218.75', 'images/Digital Logic and State Machine Design.png', '1', 15),
+(195107268, 'Introduction to Optical Fiber Communications Systems', NULL, 'Electrical and Computer Engineering', 'first', 12, '1988-02-01', '218.74', 'images/Introduction to Optical Fiber Communications Systems.png', '1', 15),
+(195117778, 'Linear System Theory and Design', NULL, 'Electrical and Computer Engineering ', '3rd', 6, '1998-08-01', '172.50', 'images/Linear System Theory and Design.png', '1', 15),
+(195123549, 'Probabilistic Methods of Signal and System Analysis', NULL, 'Electrical and Computer Engineering', '3rd', 7, '1998-01-08', '175.95', 'images/Probabilistic Methods of Signal and System Analysi.png', '1', 15),
+(195125841, 'Digital Integrated Circuit Design', NULL, 'Electrical and Computer Engineering', 'first', 9, '1999-01-01', '218.75', 'images/Digital Integrated Circuit Design.png', '1', 15),
+(195125843, 'Digital Integrated Circuit Design', NULL, 'Electrical and Computer Engineering', 'first', 9, '1999-11-01', '218.75', 'images/Digital Integrated Circuit Design.png', '1', 15),
+(195136381, 'Digital Signal Processing', NULL, 'Electrical and Computer Engineering', 'first', 6, '2001-02-01', '218.75', 'images/Digital Signal Processing.png', '1', 15),
+(195142497, '\r\nDesign of Feedback Control Systems', NULL, ' Electrical and Computer Engineering', '4', 7, '2001-08-30', '365.95', 'images/Design of Feedback Control Systems.png', '1', 15),
+(195156617, 'Signals and Systems', NULL, 'Electrical and Computer Engineering', '3rd', 13, '2004-06-01', '159.25', 'images/Signals and Systems.png', '1', 15),
+(195158334, 'Linear Systems and Signals', NULL, 'Electrical and Computer Engineering', '2nd', 14, '2004-01-01', '218.75', 'images/Linear Systems and Signals.png', '1', 15),
+(199339147, 'Microelectronic Circuits', NULL, 'Electrical and Computer Engineering', '7th', 9, '2015-12-18', '130.90', 'images/Microelectronic Circuits.png', '1', 15),
+(199339279, 'Engineering Economic Analysis', NULL, 'electronic engineering', '12th', 13, '2013-12-10', '153.75', 'images/Engineering Economic Analysis.png', '1', 15),
+(305105729, 'An Introduction to Engineering, SI Edition', NULL, 'engineering', '5th', 14, '2014-12-15', '137.75', 'images/An Introduction to Digital and Analog Communications.png', '1', 15),
+(306446677, 'Human Engineering in Stereoscopic Viewing Devices', NULL, 'Mechanical Engineering', '2nd', 8, '1993-11-30', '218.90', 'images/Human Engineering in Stereoscopic Viewing Devices.png', '1', 15),
+(306474131, 'Engineering Electronic Negotiations', NULL, ' Computer Science', 'first', 11, '2003-01-31', '218.90', 'images/Engineering Electronic Negotiations.png', '1', 15),
+(319466380, 'Simulation Approach Towards Energy Flexible Manufacturing Systems', NULL, 'Mechanical Engineering', '15th', 15, '2017-03-30', '256.40', 'images/Simulation Approach Towards Energy Flexible Manufa...png', '1', 15),
+(319469150, 'Engineering Education ', NULL, 'Applied Science', '3rd', 11, '2017-04-24', '366.44', 'images/engineering Education.png.', '1', 15),
+(319486705, 'Cloud Computing and Security: Part I', NULL, 'Computer Science', 'first', 6, '2016-11-01', '212.75', 'images/Cloud Computing and Security.png', '3', 3),
+(319556320, 'Design of Cmos Analog Integrated Fractional-Order Circuits 2017', NULL, 'Computer Engineering', 'first', 5, '2017-05-11', '115.25', 'images/Design of Cmos Analog Integrated Fractional-Order ...png', '1', 15),
+(319560735, 'Engineering Aspects of Geologic CO2 Storage 2017', NULL, 'Petroleum Geoscience & Engineering', 'first', 15, '2017-03-29', '115.25', 'images/Engineering Aspects of Geologic CO2 Storage 2017.png', '1', 15),
+(319563890, 'Evaluation of Novel Approaches to Software Engineering 2016', NULL, 'Communications in Computer in Engineering', '', 5, '2017-04-07', '166.95', 'images/Evaluation of Novel Approaches to Software Enginee.png', '1', 15),
+(319571311, 'Brain-Computer Interface Research', NULL, ' Electrical and Computer Engineering', 'first', 6, '2017-05-28', '115.25', 'images/Brain-Computer Interface Research.png', '1', 15),
+(319571400, 'Software Engineering Trends and Techniques in Intelligent Systems 2017', NULL, 'Computer Engineering', '6th', 4, '2014-04-27', '676.50', 'images/Software Engineering Trends and Techniques in Inte.png', '1', 15),
+(331942440, 'Information and Communications Technology in Primary School Education 2017', NULL, 'Information and Communications Technology', 'first', 2, '2017-03-10', '256.40', 'images/Information and Communications Technology in Primary School Education 2017.png', '1', 15),
+(331955431, 'Viscous Flows ', NULL, 'Mathematical Engineering', 'first', 2, '2017-05-03', '346.90', 'images/Viscous Flows.png', '1', 15),
+(400750536, '\r\nHandbook of Photonics in Biomedical Engineering 2016', NULL, 'Biomedical Engineering', 'first', 3, '2017-04-26', '999.99', 'images/Handbook of Photonics in Biomedical Engineering ...png', '1', 15),
+(412707705, 'Computer Applications in Production Engineering', NULL, 'Information and Communication Technology', 'first', 3, '2017-01-01', '866.40', 'images/Computer Applications in Production Engineering.png', '1', 15),
+(470454628, 'Security Risk Management Body of Knowledge', NULL, 'engineering', 'first', 14, '2009-07-01', '104.55', 'images/Security Risk Management Body of Knowledge.png', '1', 15),
+(470639539, 'The Art of Human Hacking', NULL, 'engineering', 'first', 2, '2010-12-01', '38.95', 'images/The Art of Human Hacking.png', '1', 15),
+(470750120, 'Spacecraft Systems Engineering', NULL, 'Aerospace engineering', '1', 14, '2011-08-12', '80.75', 'images/\nSpacecraft Systems Engineering.png', '1', 15),
+(470916591, 'HTML, XHTML & CSS for Dummies', 'The indispensable introductory reference guide to HTML, XHTML and CSS Even though new technologies enable people to do much more with the Web, in the end HTML, XHTML and CSS are still at the root of any Web site. The newest edition of this bestselling guide is fully updated and revised for the latest technology changes to the field, including HTML5 and CSS3. Illustrated in full color, this book provides beginner and advanced coders the tools they need to be proficient at these programming languages.', 'HTML', '7th', 10, '2010-12-23', '43.99', 'images/HTML, XHTML & CSS for Dummies.png', '5', 5),
+(470929960, 'SQL All-In-One for Dummies', NULL, 'database', 'first', 2, '2011-03-18', '45.90', 'images/SQL All-In-One for Dummies.png', '4', 11),
+(471197440, 'Elements of Network Protocol Design', NULL, 'Network Protocol', 'first', 1, '1998-04-22', '381.80', 'images/Elements of Network Protocol Design.png', '1', 15),
+(527340920, 'Nanopatterned and Nanoparticle-modified Electrodes', NULL, 'Electrochemical Sciences and Engineering', 'first', 13, '2017-05-01', '208.99', 'images/Nanopatterned and Nanoparticle-modified Electrodes.png', '1', 15),
+(540422196, 'Engineering of Intelligent Systems', NULL, 'Computer Science Engineering', 'first', 9, '2001-06-01', '185.95', 'images/Engineering of Intelligent Systems.png', '1', 15),
+(596009208, 'Head First Java', NULL, 'Information Technology', '2nd', 1, '2005-02-19', '59.75', 'images/Head First Java.png', '1', 15),
+(596159900, 'Head First HTML and CSS', 'This is the description', 'Database', '2nd', 11, '2012-09-18', '54.25', 'images/Head First HTML and CSS.png', '4', 5),
+(658169206, 'Researching Complex Information Infrastructures 2016', NULL, 'Information Technology', 'first', 3, '2017-04-20', '158.95', 'images/Researching Complex Information Infrastructures 20...png', '1', 15),
+(691165610, '\r\nTesla', NULL, 'Electronics', 'first', 6, '2015-05-15', '26.50', 'images/Tesla.png', '1', 15),
+(722127561, 'Cyclops', NULL, 'Electronics Engineering', 'first', 1, '1988-01-01', '55.20', 'images/Cyclops.png', '1', 15),
+(730314723, 'Engineering Your Future', NULL, 'engineering', 'revised', 13, '2015-06-20', '153.90', 'images/Engineering Your Future.png', '1', 15),
+(760340730, 'Tune and Modify Motorcycle Engine Management ', NULL, 'engineering', 'first', 11, '2012-11-11', '32.00', 'images/Tune and Modify Motorcycle Engine Management.png', '1', 15),
+(792323815, 'Mathematical Theory of Oil and Gas Recovery', NULL, 'Petroleum Engineering', 'first', 3, '1993-07-31', '427.90', 'images/Mathematical Theory of Oil and Gas Recovery', '1', 15),
+(811032378, 'Robustness Related Issues in Speaker Recognition', NULL, 'Electrical and Computer Engineering', 'first', 6, '2017-05-08', '115.20', 'images/Robustness Related Issues in Speaker Recognition.png', '1', 15),
+(812192537, 'A Textbook of Machine Design', NULL, 'Mechanical engineering', '25th', 4, '2014-04-02', '140.99', 'images/A Textbook of Machine Design.png', '1', 15),
+(812192822, 'Strength of Material', NULL, 'Technology', '1st', 3, '2014-10-02', '147.12', 'images/Strength of Material.png', '1', 15),
+(812997794, 'Inner Engineering', NULL, 'engineering', 'first', 12, '2016-10-10', '37.95', 'images/Inner Engineering.png', '1', 15),
+(884152731, 'Environmental Control in Petroleum Engineering', NULL, 'Petroleum Engineering', 'first', 1, '1996-05-09', '280.50', 'images/Environmental Control in Petroleum Engineering.png', '1', 15),
+(890066353, 'Risk Management Processes for Software Engineering Models', NULL, 'Computer Science Engineering', 'first', 2, '1996-10-11', '159.75', 'images/Risk Management Processes for Software Engineering...png', '1', 15),
+(985323094, 'Ponderables - Engineering', NULL, 'engineering', 'first', 11, '2016-10-01', '25.55', 'images/Ponderables - Engineering.png', '1', 15),
+(1114595241, ' Mechanics Of Materials ', NULL, 'engineering', '7th', 4, '2015-02-01', '121.75', 'images/Mechanics Of Materials.png', '1', 15),
+(1118008189, 'HTML & CSS', NULL, 'HTML', 'first', 7, '2011-10-21', '33.25', 'images/HTML & CSS.png', '5', 5),
+(1118318757, 'Engineering Fluid Mechanics', NULL, 'mechanical engineering', '10th', 14, '2013-06-27', '194.55', 'images/Engineering Fluid Mechanics.png', '1', 15),
+(1118324579, 'Materials Science and Engineering', NULL, 'civil engineering', 'first', 15, '2013-12-02', '199.95', 'images/Materials Science and Engineering.png', '1', 15),
+(1118394100, 'Project Financing, Third Edition', NULL, 'Finance', 'first', 13, '2013-04-12', '102.50', 'images/pmp.png', '1', 15),
+(1118407814, 'Beginning Programming with Java For Dummies', NULL, 'Infomation Technology', 'first', 5, '2014-05-20', '199.95', 'images/Beginning Programming with Java For Dummies.png', '1', 15),
+(1118454693, 'Multiphase Reactor Engineering for Clean and Low-Carbon Energy Applications', NULL, 'Mechanical Engineering', 'first', 3, '2017-03-13', '356.95', 'images/Multiphase Reactor Engineering for Clean and Low-C....png', '1', 15),
+(1118897781, '\r\nInformation Technology for Management', NULL, 'Information Technology', 'first', 12, '2014-12-10', '199.95', 'images/Information Technology for Management.png', '1', 15),
+(1118938666, 'Carbon Dioxide Capture and Acid Gas Injection', NULL, 'Mechanical Engineering', 'first', 4, '2017-05-01', '257.99', 'images/Carbon Dioxide Capture and Acid Gas Injection.png', '1', 15),
+(1119021431, 'Data Analysis Using SQL and Excel', NULL, 'Information Technology', 'first', 1, '2015-12-04', '57.90', 'images/Data Analysis Using SQL and Excel.png', '1', 15),
+(1119076889, 'Outlook 2016 For Dummies', NULL, 'Information Technology', 'first', 11, '2015-10-16', '29.95', 'images/Outlook 2016 For Dummies.png', '1', 15),
+(1119117976, 'Electronics for Dummies', NULL, 'Electronics Engineering', '3rd', 6, '2015-07-17', '33.25', 'images/Electronics for Dummies.png', '1', 15),
+(1119271495, 'Fundamentals of Nuclear Engineering', NULL, 'Mechanical Engineering', '4th', 2, '2017-05-05', '235.95', 'images/Fundamentals of Nuclear Engineering.png', '1', 15),
+(1119301084, 'Java Programming for Android Developers For Dummies', NULL, 'Information Technology ', '2nd', 8, '2016-11-18', '38.95', 'images/Java Programming for Android Developers Fo.png', '1', 15),
+(1138028622, 'Back Analysis in Rock Engineering', NULL, 'Civil engineering', 'first', 14, '2017-04-08', '368.25', 'images/Back Analysis in Rock Engineering.png', '1', 15),
+(1138032832, 'Aero Engine Combustor Casing', NULL, 'engineering', '2nd', 10, '2017-05-25', '55.00', 'images/Aero Engine Combustor Casing.png', '1', 15),
+(1241476874, 'Civil Engineering: Conventional and Objective Type', NULL, 'Civil Engineering', '1st', 1, '2014-07-02', '150.10', 'images/Civil Engineering: Conventional and Objective Type.png', '1', 15),
+(1259010651, 'Service Management', NULL, 'Information Technology', '8th', 13, '2013-04-01', '126.25', 'images/Service Management.png', '1', 15),
+(1259586855, 'Handbook of Civil Engineering Calculations', NULL, 'Mechanical Engineering', '3rd', 11, '2016-07-04', '219.50', 'images/Handbook of Civil Engineering Calculations.PNG', '1', 15),
+(1259587541, 'Practical Electronics for Inventors', NULL, 'Electrical Engineering', '4th', 5, '2016-01-20', '48.75', 'images/Practical Electronics for Inventors.PNG', '1', 15),
+(1259641791, 'Microsoft Sql Server 16', NULL, 'Database', '6th', 4, '2016-11-22', '64.40', 'images/Microsoft Sql Server 16.PNG', '1', 15),
+(1285060032, 'Guide to Computer Forensics and Investigations', NULL, 'Information Technology', '5th', 15, '2014-05-01', '134.50', 'images/Guide to Computer Forensics and Investigations.PNG', '1', 15),
+(1292018330, 'Java', NULL, 'Information Technology', '7th', 9, '2014-07-25', '97.95', 'images/Java.PNG', '1', 15),
+(1292022310, 'Introduction to Human Factors Engineering', NULL, 'Applied Science', '2nd', 5, '2013-07-18', '105.80', 'images/Introduction to Human Factors Engineering.PNG', '1', 15),
+(1292080736, ' Modern Engineering Mathematics', NULL, 'civil engineering', '5th', 4, '2015-04-29', '106.50', 'images/Modern Engineering Mathematics.PNG', '1', 15),
+(1292080841, 'Modern Engineering Mathematics ', NULL, 'engneering', '5th', 4, '2015-05-18', '118.80', 'images/Modern Engineering Mathematics.PNG', '1', 15),
+(1292088729, 'Engineering Mechanics', NULL, 'Mechanical Engineering', '14th', 5, '2016-03-27', '99.95', 'images/Engineering Mechanics.PNG', '1', 15),
+(1305105435, '\r\nGuide to Networking Essentials', NULL, 'Information Technology', '7th', 12, '2015-11-15', '124.50', 'images/Guide to Networking Essentials.PNG', '1', 15),
+(1305883462, 'Ethical Hacking and Countermeasures', NULL, 'Network Operating Systems ', '2nd', 11, '2016-02-18', '168.90', 'images/Ethical Hacking and Countermeasures.PNG', '1', 15),
+(1319538497, 'Wireless and Satellite system', NULL, 'Telecommunications Engineering', 'first', 7, '2017-05-12', '80.25', 'images/Wireless and Satelite systems.png', '4', 1),
+(1319564293, 'International Conference on Advanced Manufacturing Engineering and Technologies', NULL, 'Mechanical Engineering', '5th', 5, '2017-04-23', '501.95', 'images/International Conference on Advanced Manufacturing.PNG', '1', 15),
+(1319571400, 'Software Engineering Trends and Techniques in Intelligent Systems', NULL, 'Systems and Computing', '7th', 4, '2017-04-27', '676.50', 'images/Software Engineering Trends and Techniques in Intelligent Systems.png', '1', 15),
+(1406366846, 'Get Coding!', NULL, 'HTML', 'first', 9, '2016-08-01', '14.25', 'images/Get Coding!.png', '4', 2),
+(1454908092, 'The Engineering Book', NULL, 'Sterling Milestones', 'first', 12, '2015-05-01', '36.40', 'images/The Engineering Book.png', '1', 15),
+(1455509779, 'Things I Learned in Engineering School', NULL, 'engineering', 'first', 11, '2013-06-25', '25.80', 'images/Things I Learned in Engineering School.png', '1', 15),
+(1466565942, 'Drug Delivery', NULL, 'An Integrated Clinical and Engineering App', 'first', 12, '2017-04-15', '301.25', 'images/Drug Delivery.png', '1', 15),
+(1473614074, 'Practical Electronics : A Complete Introduction', NULL, 'Electronics Engineering', 'first', 12, '2016-07-12', '24.99', 'images/Practical Electronics A Complete Introduction.png', '1', 15),
+(1474711839, 'Great Wall of China', NULL, 'engineering Wonders', 'first', 10, '2017-03-09', '16.90', 'images/Great Wall of China.png', '1', 15),
+(1482259281, '\r\nConductive Polymers', NULL, 'Materials Science and Engineering', '13th', 10, '2017-04-27', '306.30', 'images/Conductive Polymers.png', '1', 15),
+(1483594556, 'Engine Out Survival Tactics', NULL, 'Engineering', 'first', 4, '2017-04-16', '34.50', 'images/Engine Out Survival Tactics.png', '1', 15),
+(1484214110, '\r\nA Network Routing Protocol', NULL, 'Network Protocol', 'first', 3, '2015-12-21', '39.25', 'images/A Network Routing Protocol.png', '4', 14),
+(1489994823, 'Understanding and Using the Controller Area Network Communication Protocol', NULL, 'Network Protocol', 'first', 2, '2014-02-23', '276.25', 'images/Understanding and Using the Controller Area Networ..png', '5', 14),
+(1491929121, 'Site Reliability Engineering', NULL, 'IT', 'first', 3, '2016-04-16', '54.32', 'images/Site Reliability Engineering.png', '4', 13),
+(1498738151, 'Software-Defined Data Infrastructure Essentials', NULL, 'Information Technology', 'first', 7, '2017-07-01', '187.75', 'images/Software-Defined Data Infrastructure Essentials.png', '5', 13),
+(1498772412, 'HIMSS Dictionary of Health Information Technology Terms, Acronyms, and Organizations', NULL, 'Information Technology', '4th', 1, '2017-04-01', '85.75', 'images/himss.png', '4', 13),
+(1509304339, 'Exam Ref 70-761 Querying Data with Transact-SQL', NULL, 'database', 'first', 6, '2017-04-10', '73.75', 'images/Exam Ref 70-761 Querying Data with Transact-SQL.png', '4', 11),
+(1597497436, 'Data Hiding', NULL, 'Information Technology', 'first', 9, '2012-11-12', '64.85', 'images/data hidding.png', '4', 13),
+(1604270780, 'Mastering It Project Management', NULL, 'Project Management', 'first', 12, '2013-08-01', '101.95', 'images/Mastering It Project Management.png', '1', 15),
+(1741253594, 'Excel HSC - Information Processes and Technology Study Guide', NULL, 'Information Technology', 'first', 6, '2010-03-01', '27.00', 'images/Excel HSC - Information Processes and Technolo.png', '5', 13),
+(1743760264, 'Electrical Wiring Practice Volume 1+2', NULL, 'Electrical Engineering', 'first', 1, '2014-07-25', '153.75', 'images/Electrical Wiring Practice Volume 1+2.png', '5', 15),
+(1785611232, ' \r\nPower Quality in Future Electrical Power Systems', NULL, 'Energy Engineering', 'first', 12, '2017-04-30', '304.80', 'images/Power Quality in Future Electrical Power Systems.png', '4', 15),
+(2100681537, 'Engineering Mathematics Pocket Book', NULL, 'mathematics', '4th', 6, '2008-12-02', '55.00', 'images/Engineering Mathematics Pocket Book.png', '4', 15),
+(2114595292, ' Thermodynamics ', NULL, 'engineering', '8th', 15, '2014-08-02', NULL, 'images/Thermodynamics.png', '5', 15),
+(2147483647, 'Bosch Fuel Injection and Engine Management', NULL, 'engineering', 'first', 8, '1989-11-27', '161.50', 'images/Bosch Fuel Injection and Engine Management.png', '4', 15);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_author`
+--
+
+CREATE TABLE `book_author` (
+  `ISBN` int(10) NOT NULL,
+  `author_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `book_author`
+--
+
+INSERT INTO `book_author` (`ISBN`, `author_id`) VALUES
+(11111, 6),
+(7179428, 10),
+(12457745, 9),
+(12800956, 11),
+(19542850, 12),
+(19933914, 13),
+(30640083, 14),
+(31950701, 15),
+(71010033, 16),
+(71016767, 17),
+(71457356, 18),
+(71493255, 19),
+(71742476, 20),
+(71793054, 21),
+(71830456, 22),
+(71831452, 23),
+(71832386, 24),
+(71835733, 25),
+(71837280, 26),
+(71839666, 24),
+(71842594, 28),
+(71850490, 29),
+(72460539, 30),
+(72848235, 29),
+(73104450, 30),
+(73380237, 1),
+(73380377, 2),
+(73397921, 3),
+(73398276, 3),
+(73401129, 4),
+(80425810, 5),
+(110324300, 3),
+(119563564, 4),
+(123838460, 5),
+(124585422, 4),
+(124585423, 8),
+(125964163, 9),
+(128009446, 10),
+(128021209, 10),
+(128093951, 11),
+(132073749, 12),
+(140515267, 13),
+(170365980, 14),
+(191576470, 14),
+(195107233, 15),
+(195107268, 16),
+(195117778, 17),
+(195123549, 15),
+(195125841, 16),
+(195125843, 18),
+(195136381, 17),
+(195142497, 19),
+(195156617, 20),
+(195158334, 20),
+(199339147, 13),
+(199339279, 14),
+(305105729, 15),
+(306446677, 16),
+(306474131, 23),
+(319466380, 24),
+(319469150, 23),
+(319486705, 24),
+(319556320, 25),
+(319560735, 26),
+(319563890, 18),
+(319571311, 29),
+(319571400, 2),
+(331942440, 3),
+(331955431, 3),
+(400750536, 4),
+(412707705, 4),
+(470454628, 5),
+(470639539, 16),
+(470750120, 4),
+(470916591, 4),
+(470929960, 14),
+(471197440, 6),
+(527340920, 7),
+(540422196, 13),
+(596009208, 8),
+(596159900, 8),
+(658169206, 9),
+(691165610, 13),
+(722127561, 10),
+(730314723, 10),
+(760340730, 12),
+(792323815, 13),
+(811032378, 14),
+(812192537, 17),
+(812192822, 18),
+(812997794, 19),
+(884152731, 20),
+(890066353, 21),
+(985323094, 22),
+(1114595241, 23),
+(1118008189, 24),
+(1118318757, 26),
+(1118324579, 25),
+(1118394100, 27),
+(1118407814, 28),
+(1118454693, 29),
+(1118897781, 30),
+(1118938666, 2),
+(1119021431, 3),
+(1119076889, 4),
+(1119117976, 5),
+(1119271495, 6),
+(1119301084, 7),
+(1138028622, 8),
+(1138032832, 9),
+(1241476874, 1),
+(1259010651, 11),
+(1259586855, 12),
+(1259587541, 12),
+(1259641791, 13),
+(1285060032, 14),
+(1292018330, 15),
+(1292022310, 16),
+(1292080736, 17),
+(1292080841, 18),
+(1292088729, 19),
+(1305105435, 18),
+(1305883462, 17),
+(1319538497, 27),
+(1319564293, 18),
+(1319571400, 23),
+(1406366846, 24),
+(1454908092, 23),
+(1455509779, 24),
+(1466565942, 25),
+(1473614074, 26),
+(1474711839, 16),
+(1482259281, 26),
+(1483594556, 26),
+(1484214110, 27),
+(1489994823, 28),
+(1491929121, 29),
+(1498738151, 29),
+(1498772412, 30),
+(1509304339, 1),
+(1597497436, 2),
+(1604270780, 2),
+(1741253594, 3),
+(1743760264, 3),
+(1785611232, 5),
+(2100681537, 3),
+(2114595292, 7),
+(2147483647, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `keyword`
+--
+
+CREATE TABLE `keyword` (
+  `keyword_id` int(10) NOT NULL,
+  `k1` varchar(20) DEFAULT NULL,
+  `k2` varchar(20) DEFAULT NULL,
+  `k3` varchar(20) DEFAULT NULL,
+  `k4` varchar(20) DEFAULT NULL,
+  `k5` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `keyword`
+--
+
+INSERT INTO `keyword` (`keyword_id`, `k1`, `k2`, `k3`, `k4`, `k5`) VALUES
+(1, 'wireless', 'satelite', 'telecommunication', NULL, NULL),
+(2, 'html', 'css', 'php', 'web', 'web design'),
+(3, 'cloud', 'cloud computing', 'cloud security', NULL, NULL),
+(4, 'database', NULL, NULL, NULL, NULL),
+(5, 'html', 'Xhtml', 'css', 'php', NULL),
+(6, 'html', 'css', 'javascript', 'jquery', 'web design'),
+(7, 'engineering', 'structural', 'mechanical', NULL, NULL),
+(8, 'engineering', 'cost efficient', 'computer', 'computer science', NULL),
+(9, 'circuit', 'electronic', 'engineering ', 'microelectronic', NULL),
+(10, 'management', 'industrial', 'engineering', 'challenges', NULL),
+(11, 'sql', 'database', 'mysql', 'query', 'queries'),
+(12, 'computer', 'electronics', NULL, NULL, NULL),
+(13, 'IT', 'technology', NULL, NULL, NULL),
+(14, 'Networking', 'network', 'protocol', NULL, NULL),
+(15, 'all', NULL, NULL, NULL, NULL),
+(18, 'web', 'html', 'coding', '', ''),
+(19, '', '', '', '', ''),
+(20, 'engineering', 'science', 'automotive', '', ''),
+(21, 'web', 'html', 'coding', 'css', ''),
+(22, 'web', 'html', 'coding', 'css', ''),
+(23, 'search ', 'any', 'css', 'css', ''),
+(24, 'search ', 'book', 'any', 'css', 'website'),
+(25, 'web', 'html', 'coding', '', ''),
+(26, 'web', 'book', 'coding', 'css', 'website'),
+(27, 'web', 'html', 'coding', '', ''),
+(28, 'any', 'html', 'automotive', 'css', 'website');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `publisher`
+--
+
+CREATE TABLE `publisher` (
+  `publisher_id` int(10) NOT NULL,
+  `publisher_name` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `publisher`
+--
+
+INSERT INTO `publisher` (`publisher_id`, `publisher_name`) VALUES
+(1, 'S.K. Kataria & sons '),
+(2, 'Harper Collins'),
+(3, 'Penguin books india'),
+(4, 'Tara books'),
+(5, 'Westland Books'),
+(6, 'Brown Book Group '),
+(7, 'Pascal Press '),
+(8, 'McGraw-Hill Education '),
+(9, 'Penguin Books Ltd '),
+(10, 'Taylor & Francis Inc '),
+(11, 'Pearson'),
+(12, 'Reed Elsevier'),
+(13, 'Wolters Kluwer'),
+(14, 'Holtzbrinck'),
+(15, 'Cengage'),
+(16, 'MBD'),
+(17, 'MBD'),
+(20, 'Eco press'),
+(21, 'abcd'),
+(22, 'abc '),
+(23, 'abc '),
+(24, 'dinesh'),
+(25, 'dinesh'),
+(26, 'dinesh'),
+(27, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` int(10) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(200) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `name`, `email`, `password`) VALUES
+(1, '30304389', 'sandhusatinder707@gmail.com', '$2y$10$LcPe2a..qY8oealFULPGxuExukGKgmI3onsdGY6swBd5KUBVbyvIy'),
+(2, 'John', 'John@gmail.com', '$2y$10$2DeiOOfJUZlgO5butTmqGOS2ZgUF58dyvrHSaAFn7YUgI9g991yjC'),
+(3, 'tutor', 'tutor@gmail.com', '$2y$10$jn3zkMJm.MOmeCo4cYewYOgUVB2eR6VSZKu2zS/ZLdvDVkpiCgvo2'),
+(4, 'abishek', 'abishek@gmail.com', '$2y$10$N.db9skUqMPWFwPlonoZ8.ETUSWVPS/ZejCliVfubiKLjzN0W7lMm'),
+(5, 'pardeep', 'pardeep@gmail.com', '$2y$10$B3b454UZsNuoarWgg2iAtezFUbAxai6cF0PacAP61JIHqhi7MjLXG'),
+(6, 'mubeen', 'mubeen@gmail.com', '$2y$10$LcPe2a..qY8oealFULPGxuExukGKgmI3onsdGY6swBd5KUBVbyvIy'),
+(10, 'satindersingh', 'satinder.singh@yahoo.com', '$2y$10$EBSFJPWdrGEPeSRk/5pMDucX6.jwGZz2Ug/sA.XSNKEIn7IFJIheG');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `author`
+--
+ALTER TABLE `author`
+  ADD PRIMARY KEY (`author_id`);
+
+--
+-- Indexes for table `book`
+--
+ALTER TABLE `book`
+  ADD PRIMARY KEY (`ISBN`),
+  ADD KEY `publisher_id` (`publisher_id`),
+  ADD KEY `keyword_id` (`keyword_id`);
+
+--
+-- Indexes for table `book_author`
+--
+ALTER TABLE `book_author`
+  ADD PRIMARY KEY (`ISBN`,`author_id`),
+  ADD UNIQUE KEY `ISBN_2` (`ISBN`),
+  ADD UNIQUE KEY `ISBN` (`ISBN`,`author_id`),
+  ADD KEY `author_id` (`author_id`),
+  ADD KEY `ISBN_3` (`ISBN`),
+  ADD KEY `ISBN_4` (`ISBN`);
+
+--
+-- Indexes for table `keyword`
+--
+ALTER TABLE `keyword`
+  ADD PRIMARY KEY (`keyword_id`);
+
+--
+-- Indexes for table `publisher`
+--
+ALTER TABLE `publisher`
+  ADD PRIMARY KEY (`publisher_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `author`
+--
+ALTER TABLE `author`
+  MODIFY `author_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+--
+-- AUTO_INCREMENT for table `keyword`
+--
+ALTER TABLE `keyword`
+  MODIFY `keyword_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT for table `publisher`
+--
+ALTER TABLE `publisher`
+  MODIFY `publisher_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `book`
+--
+ALTER TABLE `book`
+  ADD CONSTRAINT `book_ibfk_1` FOREIGN KEY (`publisher_id`) REFERENCES `publisher` (`publisher_id`);
+
+--
+-- Constraints for table `book_author`
+--
+ALTER TABLE `book_author`
+  ADD CONSTRAINT `book_author_ibfk_1` FOREIGN KEY (`ISBN`) REFERENCES `book` (`ISBN`),
+  ADD CONSTRAINT `book_author_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `author` (`author_id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
