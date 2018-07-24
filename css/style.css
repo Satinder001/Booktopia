@@ -1,0 +1,86 @@
+body{
+	font-size:13px;
+	font-family: calibri light;
+  color: #212121;
+}
+#search {
+	background:#f7f7f7;
+	padding:10px;
+	margin: 10px;	
+	moz-border-radius:1px;
+	-webkit-border-radius:1px;
+	border-radius:1px;
+	text-align: center;
+}
+
+
+div#txt {
+	top:45%;
+    position: relative;
+}
+
+
+div#txt h2 {
+    font-size: 50px;
+    color: #969494;
+    text-align: center;
+    
+}
+
+
+
+
+
+.book-div {
+	position:relative;
+	width:250px;
+	height:300px;
+	margin:5px;
+	padding:20px;
+	display:inline-table;
+	color:black;
+	background:#AFB389;
+	background:#f7f7f7;
+	moz-border-radius:20px;
+	-webkit-border-radius:16px;
+	border-radius:16px;
+
+}
+.book-div:hover{
+	background:#AFB3AD;	
+	color:white;
+}
+.book-list{	
+	text-align: center;
+	margin:0px auto;
+}
+
+
+
+.form-control {
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+
+
+
+
+
+
+
+
+
+

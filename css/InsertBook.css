@@ -1,0 +1,97 @@
+/*
+
+#status
+{ background-color:orange;
+float:right;
+margin:0px;
+}
+*/
+/*
+div#heading{
+   padding:0px;
+   margin:0px;
+   width:100%;
+	height:10%;
+}
+div#heading img{
+	position:relative;
+	width:100%;
+	height:10%;
+}
+
+div#main {
+	position:relative;
+}
+
+h1 {
+	display: block;
+	 margin-left: 40%;
+    margin-right: auto;
+	
+}
+*/
+form#book1 {
+	
+	margin-top:30px;
+	position:absolute;
+	width:auto;
+	left:25%;
+	right:25%;
+	box-shadow:0px 0px 5px 0px #111333;
+	background-color:  #f7f7f7; 
+	padding:2%;
+	margin-bottom:30px;
+	
+}
+
+input[type=text], input[type=password], select {
+	margin: auto;
+	
+    width:100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+	background-color:#ffffff;
+}
+
+input[type=submit], #reset {
+    width:49%;
+    background-color: #ef6c00;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+	
+}
+#reset {
+	position:relative;
+}
+
+button#reset {
+    float: right;
+}
+
+
+
+input[type=submit]:hover, #reset:hover {
+    background-color: #da721d;
+}
+
+
+#book1 textarea {
+	width:99%;
+}
+
+/*
+
+div {
+    border-radius: 5px;
+    background-color:white;
+    padding: 20px;
+}
+*/
